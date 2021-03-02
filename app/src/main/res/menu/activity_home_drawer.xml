@@ -9,9 +9,9 @@
             android:icon="@drawable/ic_menu_add"
             android:title="@string/menu_addTeam" />
         <item
-            android:id="@+id/nav_report"
-            android:icon="@drawable/ic_menu_report"
-            android:title="@string/menu_report" />
+            android:id="@+id/nav_recently_added"
+            android:icon="@drawable/ic_menu_recentlyadded"
+            android:title="@string/recently_added" />
         <item
             android:id="@+id/nav_favourites"
             android:icon="@drawable/ic_menu_favorites"

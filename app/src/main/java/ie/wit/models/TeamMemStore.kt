@@ -10,25 +10,25 @@ internal fun getId(): Long {
 
 class TeamMemStore : TeamStore {
 
-        val donations = ArrayList<TeamModel>()
+        val teams = ArrayList<TeamModel>()
 
         override fun findAll(): List<TeamModel> {
-            return donations
+            return teams
         }
 
         override fun findById(id:Long) : TeamModel? {
-            val foundDonation: TeamModel? = donations.find { it.id == id }
-            return foundDonation
+            val foundTeam: TeamModel? = teams.find { it.id == id }
+            return foundTeam
         }
 
-        override fun create(donation: TeamModel) {
-            donation.id = getId()
-            donations.add(donation)
+        override fun create(team: TeamModel) {
+            team.id = getId()
+            teams.add(team)
             logAll()
         }
 
         fun logAll() {
-            Log.v("Donate","** Donations List **")
-            donations.forEach { Log.v("Donate","${it}") }
+            Log.v("Team","** Teams List **")
+            teams.forEach { Log.v("Teams","${it}") }
         }
     }
