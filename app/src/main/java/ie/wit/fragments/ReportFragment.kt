@@ -1,6 +1,7 @@
 package ie.wit.fragments
 
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,6 +12,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import ie.wit.R
 import ie.wit.adapters.MainAdapter
 import ie.wit.main.FootballApp
+import ie.wit.models.TeamModel
+import ie.wit.models.TeamStore
+import kotlinx.android.synthetic.main.fragment_add.*
+import kotlinx.android.synthetic.main.fragment_add.view.*
+import kotlinx.android.synthetic.main.fragment_report.*
 import kotlinx.android.synthetic.main.fragment_report.view.*
 
 class ReportFragment : Fragment() {
@@ -32,6 +38,7 @@ class ReportFragment : Fragment() {
         root.recyclerView.setLayoutManager(LinearLayoutManager(activity))
         root.recyclerView.adapter = MainAdapter(app.teamsStore.findAll())
 
+
         return root
     }
 
@@ -42,4 +49,5 @@ class ReportFragment : Fragment() {
                 arguments = Bundle().apply { }
             }
     }
+
 }

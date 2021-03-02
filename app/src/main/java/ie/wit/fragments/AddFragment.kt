@@ -6,10 +6,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
+import android.widget.Button
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.get
+import com.google.android.material.snackbar.Snackbar
 import ie.wit.R
 import ie.wit.main.FootballApp
 import ie.wit.models.TeamModel
+import kotlinx.android.synthetic.main.app_bar_home.*
+import kotlinx.android.synthetic.main.fragment_add.*
 import kotlinx.android.synthetic.main.fragment_add.view.*
 import org.jetbrains.anko.toast
 
@@ -17,11 +23,14 @@ import org.jetbrains.anko.toast
 class AddFragment : Fragment() {
 
     lateinit var app: FootballApp
-    var totalDonated = 0
+    var teams = TeamModel()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         app = activity?.application as FootballApp
+
+
     }
 
     override fun onCreateView(
@@ -32,17 +41,13 @@ class AddFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_add, container, false)
         activity?.title = getString(R.string.action_add)
 
-        root.progressBar.max = 10000
-        root.amountPicker.minValue = 1
-        root.amountPicker.maxValue = 1000
+        root.squadPicker.minValue = 11
+        root.squadPicker.maxValue = 28
 
-        root.amountPicker.setOnValueChangedListener { _, _, newVal ->
-            //Display the newly selected number to paymentAmount
-            root.paymentAmount.setText("$newVal")
-        }
-        setButtonListener(root)
+        setAddButtonListener(root)
         return root;
     }
+
 
     companion object {
         @JvmStatic
@@ -52,19 +57,21 @@ class AddFragment : Fragment() {
             }
     }
 
-    fun setButtonListener( layout: View) {
-        layout.donateButton.setOnClickListener {
-            val amount = if (layout.paymentAmount.text.isNotEmpty())
-                layout.paymentAmount.text.toString().toInt() else layout.amountPicker.value
-            if(totalDonated >= layout.progressBar.max)
-                activity?.toast("Donate Amount Exceeded!")
-            else {
-                val paymentmethod = if(layout.paymentMethod.checkedRadioButtonId == R.id.Direct) "Direct" else "Paypal"
-                totalDonated += amount
-                layout.totalSoFar.text = "$$totalDonated"
-                layout.progressBar.progress = totalDonated
-                app.teamsStore.create(TeamModel(paymentmethod = paymentmethod,amount = amount))
-            }
+    fun setAddButtonListener(layout: View) {
+        layout.addBtn.setOnClickListener {
+            teams.name = teamName.text.toString()
+            teams.location = homePitch.text.toString()
+            teams.amount = squadPicker.value
+
+
+
+
+
+            //test
+            println(teams.name)
+            println(teams.location)
+            println(teams.amount)
+
         }
     }
 }

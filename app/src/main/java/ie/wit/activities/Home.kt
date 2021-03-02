@@ -13,6 +13,7 @@ import com.google.android.material.snackbar.Snackbar
 import ie.wit.R
 import ie.wit.fragments.AddFragment
 import ie.wit.fragments.ReportFragment
+import ie.wit.models.TeamModel
 import kotlinx.android.synthetic.main.app_bar_home.*
 import kotlinx.android.synthetic.main.home.*
 import org.jetbrains.anko.toast
@@ -20,6 +21,7 @@ import org.jetbrains.anko.toast
 class Home : AppCompatActivity(),
     NavigationView.OnNavigationItemSelectedListener {
 
+    var teams = TeamModel()
     lateinit var ft: FragmentTransaction
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,8 +30,10 @@ class Home : AppCompatActivity(),
         setSupportActionBar(toolbar)
 
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action",
-                Snackbar.LENGTH_LONG).setAction("Action", null).show()
+            Snackbar.make(
+                view, "Replace with your own action",
+                Snackbar.LENGTH_LONG
+            ).setAction("Action", null).show()
         }
 
         navView.setNavigationItemSelectedListener(this)
@@ -53,9 +57,9 @@ class Home : AppCompatActivity(),
 
         when (item.itemId) {
             R.id.nav_AddTeam -> navigateTo(AddFragment.newInstance())
-            R.id.nav_report -> navigateTo(ReportFragment.newInstance())
+            R.id.nav_recently_added -> navigateTo(ReportFragment.newInstance())
 
-            else -> toast("You Selected Something Else")
+            else -> toast("Coming Soon")
         }
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
@@ -78,7 +82,7 @@ class Home : AppCompatActivity(),
     override fun onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START))
             drawerLayout.closeDrawer(GravityCompat.START)
-         else
+        else
             super.onBackPressed()
     }
 
@@ -88,4 +92,8 @@ class Home : AppCompatActivity(),
             .addToBackStack(null)
             .commit()
     }
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+
 }

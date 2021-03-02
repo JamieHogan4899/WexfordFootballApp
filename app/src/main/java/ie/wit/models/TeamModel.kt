@@ -5,6 +5,8 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class TeamModel(var id: Long = 0,
-                     val paymentmethod: String = "N/A",
-                     val amount: Int = 0) : Parcelable
+                     var name: String = "",
+                     var location: String = "",
+                     var amount: Int= 0
 
+) : Parcelable

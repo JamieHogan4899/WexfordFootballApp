@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import ie.wit.R
 import ie.wit.models.TeamModel
 import kotlinx.android.synthetic.main.card_donation.view.*
+import kotlinx.android.synthetic.main.fragment_add.view.*
+import kotlinx.android.synthetic.main.fragment_report.view.*
 
 class MainAdapter constructor(private var teams: List<TeamModel>)
     : RecyclerView.Adapter<MainAdapter.MainHolder>() {
@@ -14,7 +16,7 @@ class MainAdapter constructor(private var teams: List<TeamModel>)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
         return MainHolder(
             LayoutInflater.from(parent.context).inflate(
-                R.layout.card_donation,
+                R.layout.recently_added,
                 parent,
                 false
             )
@@ -22,18 +24,16 @@ class MainAdapter constructor(private var teams: List<TeamModel>)
     }
 
     override fun onBindViewHolder(holder: MainHolder, position: Int) {
-        val donation = teams[holder.adapterPosition]
-        holder.bind(donation)
+        val team = teams[holder.adapterPosition]
+        holder.bind(team)
     }
 
     override fun getItemCount(): Int = teams.size
 
     class MainHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        fun bind(team: TeamModel) {
 
-        fun bind(donation: TeamModel) {
-            itemView.paymentamount.text = donation.amount.toString()
-            itemView.paymentmethod.text = donation.paymentmethod
-            itemView.imageIcon.setImageResource(R.mipmap.ic_launcher_round)
         }
     }
+
 }
