@@ -26,6 +26,8 @@ class ReportFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         app = activity?.application as FootballApp
+
+
     }
 
     override fun onCreateView(
@@ -39,6 +41,12 @@ class ReportFragment : Fragment() {
         root.recyclerView.adapter = MainAdapter(app.teamsStore.findAll())
 
 
+
+
+
+
+
+
         return root
     }
 
@@ -49,5 +57,6 @@ class ReportFragment : Fragment() {
                 arguments = Bundle().apply { }
             }
     }
+
 
 }

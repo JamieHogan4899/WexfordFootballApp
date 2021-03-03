@@ -21,7 +21,7 @@ import org.jetbrains.anko.toast
 class Home : AppCompatActivity(),
     NavigationView.OnNavigationItemSelectedListener {
 
-    var teams = TeamModel()
+
     lateinit var ft: FragmentTransaction
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,7 +57,7 @@ class Home : AppCompatActivity(),
 
         when (item.itemId) {
             R.id.nav_AddTeam -> navigateTo(AddFragment.newInstance())
-            R.id.nav_recently_added -> navigateTo(ReportFragment.newInstance())
+            R.id.nav_addedTeams-> navigateTo(ReportFragment.newInstance())
 
             else -> toast("Coming Soon")
         }

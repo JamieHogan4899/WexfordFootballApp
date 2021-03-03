@@ -5,10 +5,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ie.wit.R
+import ie.wit.helpers.readImageFromPath
 import ie.wit.models.TeamModel
 import kotlinx.android.synthetic.main.card_donation.view.*
 import kotlinx.android.synthetic.main.fragment_add.view.*
 import kotlinx.android.synthetic.main.fragment_report.view.*
+import kotlinx.android.synthetic.main.nav_header_home.view.*
 
 class MainAdapter constructor(private var teams: List<TeamModel>)
     : RecyclerView.Adapter<MainAdapter.MainHolder>() {
@@ -16,7 +18,7 @@ class MainAdapter constructor(private var teams: List<TeamModel>)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
         return MainHolder(
             LayoutInflater.from(parent.context).inflate(
-                R.layout.recently_added,
+                R.layout.card_donation,
                 parent,
                 false
             )
@@ -32,6 +34,12 @@ class MainAdapter constructor(private var teams: List<TeamModel>)
 
     class MainHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(team: TeamModel) {
+            //itemView.imageIcon.setImageResource(R.mipmap.ic_launcher_round)
+            itemView.imageIcon.setImageBitmap(readImageFromPath(itemView.context, team.image))
+            itemView.listName.text = team.name
+            itemView.teamLocation.text = team.location
+            itemView.teamId.text = team.id.toString()
+
 
         }
     }

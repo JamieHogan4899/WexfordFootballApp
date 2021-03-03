@@ -1,29 +1,27 @@
 package ie.wit.fragments
 
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.get
-import com.google.android.material.snackbar.Snackbar
 import ie.wit.R
+import ie.wit.helpers.readImage
+import ie.wit.helpers.showImagePicker
 import ie.wit.main.FootballApp
 import ie.wit.models.TeamModel
-import kotlinx.android.synthetic.main.app_bar_home.*
 import kotlinx.android.synthetic.main.fragment_add.*
 import kotlinx.android.synthetic.main.fragment_add.view.*
-import org.jetbrains.anko.toast
+import kotlinx.android.synthetic.main.nav_header_home.*
 
 
 class AddFragment : Fragment() {
 
     lateinit var app: FootballApp
     var teams = TeamModel()
+    val IMAGE_REQUEST = 1
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,7 +43,12 @@ class AddFragment : Fragment() {
         root.squadPicker.maxValue = 28
 
         setAddButtonListener(root)
+        setAddImageListen(root)
+
+
         return root;
+
+
     }
 
 
@@ -57,21 +60,49 @@ class AddFragment : Fragment() {
             }
     }
 
+
     fun setAddButtonListener(layout: View) {
         layout.addBtn.setOnClickListener {
+
             teams.name = teamName.text.toString()
             teams.location = homePitch.text.toString()
             teams.amount = squadPicker.value
 
+            app.teamsStore.create(
+                TeamModel(
+                    name = teams.name,
+                    location = teams.location,
+                    amount = teams.amount,
+                    image =  teams.image
 
-
+                )
+            )
 
 
             //test
-            println(teams.name)
-            println(teams.location)
-            println(teams.amount)
+            println(teams)
+
 
         }
     }
-}
+        fun setAddImageListen(layout: View) {
+            layout.addLogo.setOnClickListener {
+                showImagePicker(this, IMAGE_REQUEST)
+            }
+
+        }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when (requestCode) {
+            IMAGE_REQUEST -> {
+                if (data != null) {
+                    teams.image = data.getData().toString()
+                    teamLogo.setImageBitmap(readImage(this, resultCode, data))
+
+                }
+            }
+
+
+        }}}
+

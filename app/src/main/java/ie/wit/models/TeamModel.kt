@@ -7,6 +7,7 @@ import kotlinx.android.parcel.Parcelize
 data class TeamModel(var id: Long = 0,
                      var name: String = "",
                      var location: String = "",
-                     var amount: Int= 0
+                     var amount: Int= 0,
+                     var image: String = ""
 
 ) : Parcelable
