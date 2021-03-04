@@ -1,29 +1,45 @@
 <resources>
-    <string name="app_name">Donation</string>
-    <string name="action_add">Add Team</string>
+    <string name="app_name">Wexford Football League</string>
     <string name="action_report">Report</string>
-    <string name="add_Title">Add A Team</string>
+    <string name="add_Title">Register Team</string>
     <string name="addLogo">Add Crest</string>
-    <string name="addButton">Add Team</string>
+    <string name="addButton">Complete Registration</string>
     <string name="TeamName">Name</string>
     <string name="TeamLocation">Location</string>
     <string name="teamId">ID</string>
-    <string name="total">Total so Far</string>
-    <string name="totalSoFar">$ Total</string>
     <string name="defaultAmount">11</string>
     <string name="defaultMethod">N/A</string>
 
 
     //Add A team//
-
     <string name="team_Name">Team Name</string>
     <string name="amountOfPlayers">How many players in the squad?</string>
     <string name="homePitchLocation">Where is the home pitch located?</string>
 
 
 
-    //recently Added
-    <string name="ListTitle">Added Teams</string>
+    //List
+    <string name="ListTitle">Registered Teams</string>
+
+    //About Us
+    <string name="ContactDetails">Contact Details</string>
+    <string name="Registrar">REGISTRAR</string>
+    <string name="myName"> Jamie Hogan </string>
+    <string name="myNumber"> 083-383-9177</string>
+    <string name="myEmail"> JamieHogan4848@gmail.com</string>
+
+    <string name="chairman">CHAIRMAN</string>
+    <string name="chairmanName">Denis Hennessy</string>
+    <string name="chairmanNumber">085 1742610</string>
+    <string name="chairmanEmail">DenisWFL@gmail.com</string>
+
+    //Edit
+    <string name="editTeam">Edit Team Details</string>
+
+
+
+
+
 
     <string name="title_activity_home">Home</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -32,14 +48,20 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_addTeam">Add</string>
-    <string name="list">View Added Teams</string>
-    <string name="menu_favourites">Favourites</string>
+
+    //Title
+    <string name="action_add">Wexford Football League </string>
+
+
+    //Nav Bar
+    <string name="menu_addTeam">Register Team</string>
+    <string name="list">View Registered Teams</string>
+    <string name="menu_edit">Edit Your Details</string>
     <string name="menu_about">About Us</string>
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
-    <string name="select_recipe_image">Select Recipe Image</string>
-    <string name="change_recipe_image">Change Recipe Image</string>
+    <string name="select_team_image">Select Team Image</string>
+    <string name="change_team_image">Change Team Image</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

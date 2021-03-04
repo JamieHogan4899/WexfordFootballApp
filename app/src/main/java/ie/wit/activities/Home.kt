@@ -11,7 +11,9 @@ import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import ie.wit.R
+import ie.wit.fragments.AboutUsFragment
 import ie.wit.fragments.AddFragment
+import ie.wit.fragments.EditFragment
 import ie.wit.fragments.ReportFragment
 import ie.wit.models.TeamModel
 import kotlinx.android.synthetic.main.app_bar_home.*
@@ -58,7 +60,8 @@ class Home : AppCompatActivity(),
         when (item.itemId) {
             R.id.nav_AddTeam -> navigateTo(AddFragment.newInstance())
             R.id.nav_addedTeams-> navigateTo(ReportFragment.newInstance())
-
+            R.id.nav_aboutus-> navigateTo(AboutUsFragment.newInstance())
+            R.id.nav_edit-> navigateTo(EditFragment.newInstance())
             else -> toast("Coming Soon")
         }
         drawerLayout.closeDrawer(GravityCompat.START)

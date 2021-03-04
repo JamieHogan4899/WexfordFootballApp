@@ -104,5 +104,8 @@ class AddFragment : Fragment() {
             }
 
 
-        }}}
+        }
+
+    }
+}
 
