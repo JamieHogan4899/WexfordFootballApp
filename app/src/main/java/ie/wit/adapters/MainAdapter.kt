@@ -10,14 +10,18 @@ import ie.wit.models.TeamModel
 import kotlinx.android.synthetic.main.card_register.view.*
 
 
-class MainAdapter constructor(private var teams: List<TeamModel>)
+
+class MainAdapter constructor(private var teams: List<TeamModel>,
+                              private val listener: (TeamModel) -> Unit)
     : RecyclerView.Adapter<MainAdapter.MainHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
+
         return MainHolder(
             LayoutInflater.from(parent.context).inflate(
                 R.layout.card_register,
                 parent,
+
                 false
             )
         )
@@ -30,6 +34,7 @@ class MainAdapter constructor(private var teams: List<TeamModel>)
     override fun onBindViewHolder(holder: MainHolder, position: Int) {
         val team = teams[holder.adapterPosition]
         holder.bind(team)
+        holder.itemView.setOnClickListener { listener(team) }
     }
 
     override fun getItemCount(): Int = teams.size
@@ -40,7 +45,8 @@ class MainAdapter constructor(private var teams: List<TeamModel>)
             itemView.imageIcon.setImageBitmap(readImageFromPath(itemView.context, team.image))
             itemView.listName.text = team.name
             itemView.teamLocation.text = team.location
-            itemView.teamId.text = team.id.toString()
+            itemView.teamAmount.text = team.amount.toString()
+
 
 
         }

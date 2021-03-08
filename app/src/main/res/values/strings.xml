@@ -36,7 +36,10 @@
     //Edit
     <string name="editTeam">Edit Team Details</string>
 
-
+    //List
+    <string name="update_title">Update Team </string>
+    <string name="update_logo"> New Crest</string>
+    <string name="update_Button"> Update Button</string>
 
 
 

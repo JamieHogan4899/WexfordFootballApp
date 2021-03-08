@@ -1,10 +1,10 @@
 package ie.wit.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
@@ -15,7 +15,6 @@ import ie.wit.fragments.AboutUsFragment
 import ie.wit.fragments.AddFragment
 import ie.wit.fragments.EditFragment
 import ie.wit.fragments.ReportFragment
-import ie.wit.models.TeamModel
 import kotlinx.android.synthetic.main.app_bar_home.*
 import kotlinx.android.synthetic.main.home.*
 import org.jetbrains.anko.toast
@@ -61,7 +60,7 @@ class Home : AppCompatActivity(),
             R.id.nav_AddTeam -> navigateTo(AddFragment.newInstance())
             R.id.nav_addedTeams-> navigateTo(ReportFragment.newInstance())
             R.id.nav_aboutus-> navigateTo(AboutUsFragment.newInstance())
-            R.id.nav_edit-> navigateTo(EditFragment.newInstance())
+            R.id.nav_edit-> navigateTo(EditFragment.newInstance(AddFragment))
             else -> toast("Coming Soon")
         }
         drawerLayout.closeDrawer(GravityCompat.START)

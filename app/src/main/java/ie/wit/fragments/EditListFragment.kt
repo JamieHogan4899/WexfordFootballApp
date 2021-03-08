@@ -15,8 +15,6 @@ import kotlinx.android.synthetic.main.fragment_edit.view.*
 
 interface TeamListener {
     fun onTeamClick(team: TeamModel)
-
-
 }
 
 class EditFragment : Fragment(), TeamListener {
@@ -42,7 +40,15 @@ class EditFragment : Fragment(), TeamListener {
 
 
         root.recyclerView.setLayoutManager(LinearLayoutManager(activity))
-        root.recyclerView.adapter = EditAdapter(app.teamsStore.findAll(), this)
+        root.recyclerView.adapter = EditAdapter(app.teamsStore.findAll()) { item ->
+                
+                val fragment = EditDetailsFragment()
+                val ft = activity!!.supportFragmentManager
+                val fragmentTransaction = fragmentManager?.beginTransaction()
+                fragmentTransaction?.replace(R.id.homeFrame, fragment);
+                fragmentTransaction?.addToBackStack(null);
+                fragmentTransaction?.commit();
+        }
 
 
         return root
@@ -51,7 +57,7 @@ class EditFragment : Fragment(), TeamListener {
 
     companion object {
         @JvmStatic
-        fun newInstance() =
+        fun newInstance(addFragment: AddFragment.Companion) =
             EditFragment().apply {
                 arguments = Bundle().apply { }
             }
@@ -59,10 +65,9 @@ class EditFragment : Fragment(), TeamListener {
 
     override fun onTeamClick(team: TeamModel) {
 
-        //test
-        print("test")
-
     }
+
+
 
 }
 
