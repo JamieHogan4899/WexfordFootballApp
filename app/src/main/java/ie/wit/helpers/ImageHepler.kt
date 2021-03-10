@@ -9,9 +9,19 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import android.provider.MediaStore
 import ie.wit.fragments.AddFragment
+import ie.wit.fragments.EditDetailsFragment
 import java.io.IOException
 
 fun showImagePicker(parent: AddFragment, id: Int) {
+    val intent = Intent()
+    intent.type = "image/*"
+    intent.action = Intent.ACTION_OPEN_DOCUMENT
+    intent.addCategory(Intent.CATEGORY_OPENABLE)
+    val chooser = Intent.createChooser(intent, R.string.select_team_image.toString())
+    parent.startActivityForResult(chooser, id)
+}
+
+fun showEditImagePicker(parent: EditDetailsFragment, id: Int) {
     val intent = Intent()
     intent.type = "image/*"
     intent.action = Intent.ACTION_OPEN_DOCUMENT
@@ -32,7 +42,34 @@ fun readImage(activity: AddFragment, resultCode: Int, data: Intent?): Bitmap? {
     return bitmap
 }
 
+fun readEditImage(activity: EditDetailsFragment, resultCode: Int, data: Intent?): Bitmap? {
+    var bitmap: Bitmap? = null
+    if (resultCode == Activity.RESULT_OK && data != null && data.data != null) {
+        try {
+            //bitmap = MediaStore.Images.Media.getBitmap(activity.contentResolver, data.data)
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+    }
+    return bitmap
+}
+
 fun readImageFromPath(context: Context, path : String) : Bitmap? {
+    var bitmap : Bitmap? = null
+    val uri = Uri.parse(path)
+    if (uri != null) {
+        try {
+            val parcelFileDescriptor = context.getContentResolver().openFileDescriptor(uri, "r")
+            val fileDescriptor = parcelFileDescriptor!!.getFileDescriptor()
+            bitmap = BitmapFactory.decodeFileDescriptor(fileDescriptor)
+            parcelFileDescriptor.close()
+        } catch (e: Exception) {
+        }
+    }
+    return bitmap
+}
+
+fun readEditImageFromPath(context: Context, path : String) : Bitmap? {
     var bitmap : Bitmap? = null
     val uri = Uri.parse(path)
     if (uri != null) {

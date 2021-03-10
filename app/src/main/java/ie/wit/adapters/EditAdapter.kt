@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ie.wit.R
+import ie.wit.helpers.readEditImageFromPath
 import ie.wit.helpers.readImageFromPath
 import ie.wit.models.TeamModel
 import kotlinx.android.synthetic.main.card_register.view.*
@@ -37,12 +38,14 @@ class EditAdapter constructor(private var teams: List<TeamModel>,
 
     class MainHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(team: TeamModel) {
-            itemView.imageIcon.setImageBitmap(readImageFromPath(itemView.context, team.image))
+            itemView.imageIcon.setImageBitmap(readEditImageFromPath(itemView.context, team.image))
             itemView.listName.text = team.name
             itemView.teamLocation.text = team.location
             itemView.teamAmount.text = team.amount.toString()
             }
     }
+
+
 
 
 

@@ -14,6 +14,7 @@ import ie.wit.main.FootballApp
 import ie.wit.models.TeamModel
 import kotlinx.android.synthetic.main.fragment_add.*
 import kotlinx.android.synthetic.main.fragment_add.view.*
+import kotlinx.android.synthetic.main.nav_header_home.*
 
 
 class AddFragment : Fragment() {
@@ -67,21 +68,14 @@ class AddFragment : Fragment() {
             teams.location = homePitch.text.toString()
             teams.amount = squadPicker.value
 
-            app.teamsStore.create(
-                TeamModel(
-                    name = teams.name,
-                    location = teams.location,
-                    amount = teams.amount,
-                    image =  teams.image
 
-                )
-            )
+            app.teamsStore.create(TeamModel(name = teams.name, location = teams.location, amount = teams.amount, image =  teams.image))
+
 
 
             //test
             println(teams.id)
             println(teams.name)
-            println(teams.location)
             println(teams.amount)
 
 

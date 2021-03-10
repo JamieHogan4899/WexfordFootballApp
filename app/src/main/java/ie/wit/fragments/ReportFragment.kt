@@ -12,6 +12,10 @@ import ie.wit.adapters.MainAdapter
 import ie.wit.main.FootballApp
 import kotlinx.android.synthetic.main.fragment_report.view.*
 
+
+
+
+
 class ReportFragment : Fragment()   {
 
     lateinit var app: FootballApp
@@ -19,6 +23,7 @@ class ReportFragment : Fragment()   {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         app = activity?.application as FootballApp
+
 
 
     }
@@ -31,10 +36,7 @@ class ReportFragment : Fragment()   {
         var root = inflater.inflate(R.layout.fragment_report, container, false)
 
         root.recyclerView.setLayoutManager(LinearLayoutManager(activity))
-        root.recyclerView.adapter = MainAdapter(app.teamsStore.findAll()) { item ->
-
-
-        }
+        root.recyclerView.adapter = MainAdapter(app.teamsStore.findAll())
 
 
 
@@ -52,6 +54,10 @@ class ReportFragment : Fragment()   {
                 arguments = Bundle().apply { }
             }
     }
+
+
+
+
 
 
 }

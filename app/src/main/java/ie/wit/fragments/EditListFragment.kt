@@ -22,6 +22,7 @@ class EditFragment : Fragment(), TeamListener {
     lateinit var app: FootballApp
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         app = activity?.application as FootballApp
@@ -41,13 +42,17 @@ class EditFragment : Fragment(), TeamListener {
 
         root.recyclerView.setLayoutManager(LinearLayoutManager(activity))
         root.recyclerView.adapter = EditAdapter(app.teamsStore.findAll()) { item ->
-                
-                val fragment = EditDetailsFragment()
-                val ft = activity!!.supportFragmentManager
-                val fragmentTransaction = fragmentManager?.beginTransaction()
-                fragmentTransaction?.replace(R.id.homeFrame, fragment);
-                fragmentTransaction?.addToBackStack(null);
-                fragmentTransaction?.commit();
+
+
+
+            app.theChoosenTeam = item  //Siobhan Added
+            val fragment = EditDetailsFragment()
+            //   fragment.setArguments(bundle)
+            val ft = activity!!.supportFragmentManager
+            val fragmentTransaction = fragmentManager?.beginTransaction()
+            fragmentTransaction?.replace(R.id.homeFrame, fragment);
+            fragmentTransaction?.addToBackStack(null);
+            fragmentTransaction?.commit();
         }
 
 

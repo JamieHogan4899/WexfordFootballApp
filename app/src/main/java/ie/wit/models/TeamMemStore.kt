@@ -27,6 +27,10 @@ class TeamMemStore : TeamStore {
             logAll()
         }
 
+    override fun delete(team: TeamModel) {
+        teams.remove(team)
+    }
+
         fun logAll() {
             Log.v("Team","** Teams List **")
             teams.forEach { Log.v("Teams","${it}") }
@@ -45,5 +49,6 @@ class TeamMemStore : TeamStore {
 
         }
         }
+
 
     }

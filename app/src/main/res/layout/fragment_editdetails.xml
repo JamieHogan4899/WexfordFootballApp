@@ -30,7 +30,7 @@
 
 
     <EditText
-        android:id="@+id/teamName"
+        android:id="@+id/editTeamName"
         android:layout_width="375dp"
         android:layout_height="40dp"
         android:layout_marginStart="5dp"
@@ -45,7 +45,7 @@
 
 
     <EditText
-        android:id="@+id/homePitch"
+        android:id="@+id/editHomePitch"
         android:layout_width="375dp"
         android:layout_height="40dp"
         android:layout_marginStart="4dp"
@@ -81,7 +81,7 @@
 
 
     <NumberPicker
-        android:id="@+id/squadPicker"
+        android:id="@+id/editSquadNumber"
         style="@android:style/Widget.Material.NumberPicker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -97,9 +97,11 @@
         app:layout_constraintVertical_bias="0.467" />
 
 
+
+
     <Button
-        android:id="@+id/addLogo"
-        android:layout_width="wrap_content"
+        android:id="@+id/withdraw"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
@@ -108,25 +110,16 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:backgroundTint="#FFE500"
-        android:text="@string/update_logo"
+        android:text="@string/withdraw"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.677" />
-
-    <ImageView
-        android:id="@+id/teamLogo"
-        android:layout_width="125dp"
-        android:layout_height="125dp"
-        android:layout_marginTop="400dp"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="270dp" />
+        app:layout_constraintVertical_bias="0.886" />
 
     <Button
-        android:id="@+id/addBtn"
+        android:id="@+id/updateBtn"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

@@ -15,6 +15,7 @@
     <string name="team_Name">Team Name</string>
     <string name="amountOfPlayers">How many players in the squad?</string>
     <string name="homePitchLocation">Where is the home pitch located?</string>
+    <string name="editLogoMessage">You will NOT be able to change this later on</string>
 
 
 
@@ -35,11 +36,14 @@
 
     //Edit
     <string name="editTeam">Edit Team Details</string>
+    <string name="editQuestion"> What Team Would You Like To Edit</string>
+
 
     //List
     <string name="update_title">Update Team </string>
     <string name="update_logo"> New Crest</string>
     <string name="update_Button"> Update Button</string>
+    <string name="withdraw">Withdraw Team</string>
 
 
 

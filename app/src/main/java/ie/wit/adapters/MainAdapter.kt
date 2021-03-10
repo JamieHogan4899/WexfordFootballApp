@@ -11,8 +11,8 @@ import kotlinx.android.synthetic.main.card_register.view.*
 
 
 
-class MainAdapter constructor(private var teams: List<TeamModel>,
-                              private val listener: (TeamModel) -> Unit)
+class MainAdapter(private var teams: List<TeamModel>,
+                  )
     : RecyclerView.Adapter<MainAdapter.MainHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
@@ -34,7 +34,7 @@ class MainAdapter constructor(private var teams: List<TeamModel>,
     override fun onBindViewHolder(holder: MainHolder, position: Int) {
         val team = teams[holder.adapterPosition]
         holder.bind(team)
-        holder.itemView.setOnClickListener { listener(team) }
+
     }
 
     override fun getItemCount(): Int = teams.size

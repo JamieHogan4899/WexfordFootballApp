@@ -1,12 +1,19 @@
 package ie.wit.models
 
 import android.content.Context
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
+import com.google.gson.reflect.TypeToken
+import ie.com.wit.helpers.exists
+import ie.com.wit.helpers.read
+import ie.com.wit.helpers.write
 import org.jetbrains.anko.AnkoLogger
 import java.util.*
 
 
 val JSON_FILE = "teams.json"
-
+val gsonBuilder = GsonBuilder().setPrettyPrinting().create()
+val listType = object : TypeToken<ArrayList<TeamModel>>() {}.type
 
 fun generateRandomId(): Long {
     return Random().nextLong()
@@ -19,6 +26,9 @@ class TeamJSONStore : TeamStore, AnkoLogger {
 
     constructor (context: Context) {
         this.context = context
+        if (exists(context, JSON_FILE)) {
+            deserialize()
+        }
     }
 
     override fun findAll(): MutableList<TeamModel> {
@@ -26,12 +36,13 @@ class TeamJSONStore : TeamStore, AnkoLogger {
     }
 
     override fun findById(id: Long): TeamModel? {
-        TODO("Not yet implemented")
+        return null
     }
 
     override fun create(team: TeamModel) {
         team.id = generateRandomId()
         teams.add(team)
+        serialize()
 
     }
 
@@ -45,15 +56,25 @@ class TeamJSONStore : TeamStore, AnkoLogger {
             foundTeam.amount = team.amount
             foundTeam.image = team.image
 
+
         }
-
+        serialize()
     }
 
-    fun delete(team: TeamModel) {
+    override fun delete(team: TeamModel) {
         teams.remove(team)
+        serialize()
 
     }
+    private fun serialize() {
+        val jsonString = gsonBuilder.toJson(teams, listType)
+        write(context, JSON_FILE, jsonString)
+    }
 
+    private fun deserialize() {
+        val jsonString = read(context, JSON_FILE)
+        teams = Gson().fromJson(jsonString, listType)
+    }
 
 
 }
