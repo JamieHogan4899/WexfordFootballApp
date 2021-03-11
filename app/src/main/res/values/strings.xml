@@ -70,6 +70,4 @@
     <string name="select_team_image">Select Team Image</string>
     <string name="change_team_image">Change Team Image</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

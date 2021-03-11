@@ -53,7 +53,7 @@ class Home : AppCompatActivity(),
         ft.replace(R.id.homeFrame, fragment)
         ft.commit()
     }
-
+    //Set what clicking on each fragment does
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
 
         when (item.itemId) {
@@ -67,35 +67,19 @@ class Home : AppCompatActivity(),
         return true
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu_home, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
-        when (item.itemId) {
-            R.id.action_add -> toast("You Selected Add Team")
-            R.id.action_report -> toast("You Selected Report")
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
+    //Back Button
     override fun onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START))
             drawerLayout.closeDrawer(GravityCompat.START)
         else
             super.onBackPressed()
     }
-
+    //handaling change of fragment
     private fun navigateTo(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.homeFrame, fragment)
             .addToBackStack(null)
             .commit()
     }
-
-
-    ///////////////////////////////////////////////////////////////////////////////
 
 }

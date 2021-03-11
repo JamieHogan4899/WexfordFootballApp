@@ -7,7 +7,7 @@ var lastId = 0L
 internal fun getId(): Long {
     return lastId++
 }
-
+//Methods that the array takes in
 class TeamMemStore : TeamStore {
 
         val teams = ArrayList<TeamModel>()

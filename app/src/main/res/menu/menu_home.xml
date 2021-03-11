@@ -5,13 +5,25 @@
 
     <item
         android:id="@+id/action_report"
-        android:orderInCategory="100"
+        android:orderInCategory="1"
         android:title="@string/action_report"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/action_add"
-        android:title="@string/add_Title"
+        android:title="@string/add_Title" />
+
+    <item
+        android:id="@+id/action_edit"
+        android:title="@string/menu_edit"
+        android:orderInCategory="2"/>
+
+    <item
+        android:id="@+id/action_aboutus"
+        android:title="@string/menu_about"
+        android:orderInCategory="3"
+
+
 
 
         app:showAsAction="never" />

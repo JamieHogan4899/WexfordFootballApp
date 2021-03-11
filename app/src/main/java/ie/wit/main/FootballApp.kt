@@ -10,12 +10,12 @@ import ie.wit.models.TeamStore
 class FootballApp : Application() {
 
     lateinit var teamsStore: TeamStore
-    lateinit var theChoosenTeam: TeamModel  //Siobhan Added
+    lateinit var theChoosenTeam: TeamModel  //global
 
     override fun onCreate() {
         super.onCreate()
         teamsStore = TeamMemStore()
-        theChoosenTeam = TeamModel()  //Siobhan Added
+        theChoosenTeam = TeamModel()
         teamsStore = TeamJSONStore(applicationContext)
 
 

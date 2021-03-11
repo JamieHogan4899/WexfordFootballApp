@@ -27,7 +27,7 @@ class ReportFragment : Fragment()   {
 
 
     }
-
+    //list teams, not how you cant click into it
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,11 +37,6 @@ class ReportFragment : Fragment()   {
 
         root.recyclerView.setLayoutManager(LinearLayoutManager(activity))
         root.recyclerView.adapter = MainAdapter(app.teamsStore.findAll())
-
-
-
-
-
 
 
         return root

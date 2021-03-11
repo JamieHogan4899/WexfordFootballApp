@@ -10,7 +10,7 @@ import ie.com.wit.helpers.write
 import org.jetbrains.anko.AnkoLogger
 import java.util.*
 
-
+//name json file
 val JSON_FILE = "teams.json"
 val gsonBuilder = GsonBuilder().setPrettyPrinting().create()
 val listType = object : TypeToken<ArrayList<TeamModel>>() {}.type
@@ -18,6 +18,8 @@ val listType = object : TypeToken<ArrayList<TeamModel>>() {}.type
 fun generateRandomId(): Long {
     return Random().nextLong()
 }
+
+//list of methods for json to take in
 
 class TeamJSONStore : TeamStore, AnkoLogger {
 

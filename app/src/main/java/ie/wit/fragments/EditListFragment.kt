@@ -21,15 +21,13 @@ class EditFragment : Fragment(), TeamListener {
 
     lateinit var app: FootballApp
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         app = activity?.application as FootballApp
 
 
     }
-
+    //load in list of teams and allow for click onto team
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

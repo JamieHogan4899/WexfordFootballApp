@@ -16,7 +16,6 @@ class MainAdapter(private var teams: List<TeamModel>,
     : RecyclerView.Adapter<MainAdapter.MainHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
-
         return MainHolder(
             LayoutInflater.from(parent.context).inflate(
                 R.layout.card_register,
@@ -25,12 +24,9 @@ class MainAdapter(private var teams: List<TeamModel>,
                 false
             )
         )
-
-
-
-
     }
 
+    //note no listener so you cant click in the list screen
     override fun onBindViewHolder(holder: MainHolder, position: Int) {
         val team = teams[holder.adapterPosition]
         holder.bind(team)
@@ -39,6 +35,7 @@ class MainAdapter(private var teams: List<TeamModel>,
 
     override fun getItemCount(): Int = teams.size
 
+    //show added teams
     class MainHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(team: TeamModel) {
 

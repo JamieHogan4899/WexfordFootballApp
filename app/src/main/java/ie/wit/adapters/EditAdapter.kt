@@ -26,6 +26,7 @@ class EditAdapter constructor(private var teams: List<TeamModel>,
         )
     }
 
+    //listener change of fragment
     override fun onBindViewHolder(holder: EditAdapter.MainHolder, position: Int) {
         val team = teams[holder.adapterPosition]
         holder.bind(team)
@@ -36,6 +37,8 @@ class EditAdapter constructor(private var teams: List<TeamModel>,
 
     override fun getItemCount(): Int = teams.size
 
+
+    //show added teams on Edit List Screen
     class MainHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(team: TeamModel) {
             itemView.imageIcon.setImageBitmap(readEditImageFromPath(itemView.context, team.image))
