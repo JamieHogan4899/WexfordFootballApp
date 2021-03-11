@@ -1,6 +1,5 @@
 package ie.wit.fragments
 
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,33 +9,35 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import ie.wit.R
 import ie.wit.adapters.MainAdapter
 import ie.wit.main.FootballApp
-import kotlinx.android.synthetic.main.fragment_report.view.*
+import ie.wit.models.TeamModel
 
 
-
-
-
-class ReportFragment : Fragment()   {
+class AboutUsFragment : Fragment() {
 
     lateinit var app: FootballApp
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         app = activity?.application as FootballApp
 
 
-
     }
-    //list teams, not how you cant click into it
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        var root = inflater.inflate(R.layout.fragment_report, container, false)
+        var root = inflater.inflate(R.layout.fragment_aboutus, container, false)
 
-        root.recyclerView.setLayoutManager(LinearLayoutManager(activity))
-        root.recyclerView.adapter = MainAdapter(app.teamsStore.findAll())
+
+
+
+
+
+
+
 
 
         return root
@@ -45,14 +46,9 @@ class ReportFragment : Fragment()   {
     companion object {
         @JvmStatic
         fun newInstance() =
-            ReportFragment().apply {
+            AboutUsFragment().apply {
                 arguments = Bundle().apply { }
             }
     }
-
-
-
-
-
 
 }
