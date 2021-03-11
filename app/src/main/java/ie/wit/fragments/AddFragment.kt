@@ -73,7 +73,7 @@ class AddFragment : Fragment() {
 
             //data validation
             if (teams.name.isEmpty()|| teams.location.isEmpty()) {
-                Toast.makeText(getActivity(),"Please check all teams are filled in", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(),"Please check all fields are filled in", Toast.LENGTH_SHORT).show();
                 //toast("please add a Team Name")
             } else {
 

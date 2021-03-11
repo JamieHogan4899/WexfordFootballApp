@@ -100,7 +100,7 @@ class EditDetailsFragment : Fragment() {
 
             //data validation
             if (team.name.isEmpty()||team.location.isEmpty()) {
-                Toast.makeText(getActivity(),"Please check all teams are filled in", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(),"Please check all fields are filled in", Toast.LENGTH_SHORT).show();
             }   else {
                 //storing update value
                 app.teamsStore.update(TeamModel(name = team.name, location = team.location, amount = team.amount, image = team.image))
