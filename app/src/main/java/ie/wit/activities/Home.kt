@@ -15,8 +15,11 @@ import ie.wit.fragments.AboutUsFragment
 import ie.wit.fragments.AddFragment
 import ie.wit.fragments.EditFragment
 import ie.wit.fragments.ReportFragment
+import ie.wit.main.FootballApp
 import kotlinx.android.synthetic.main.app_bar_home.*
 import kotlinx.android.synthetic.main.home.*
+import kotlinx.android.synthetic.main.nav_header_home.view.*
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 
 class Home : AppCompatActivity(),
@@ -24,10 +27,12 @@ class Home : AppCompatActivity(),
 
 
     lateinit var ft: FragmentTransaction
+    lateinit var app: FootballApp
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.home)
+        app = application as FootballApp
         setSupportActionBar(toolbar)
 
         fab.setOnClickListener { view ->
@@ -47,6 +52,8 @@ class Home : AppCompatActivity(),
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
+        navView.getHeaderView(0).nav_header_email.text = app.auth.currentUser?.email
+
         ft = supportFragmentManager.beginTransaction()
 
         val fragment = AddFragment.newInstance()
@@ -61,6 +68,8 @@ class Home : AppCompatActivity(),
             R.id.nav_addedTeams-> navigateTo(ReportFragment.newInstance())
             R.id.nav_aboutus-> navigateTo(AboutUsFragment.newInstance())
             R.id.nav_edit-> navigateTo(EditFragment.newInstance(AddFragment))
+            R.id.nav_sign_out -> signOut()
+
             else -> toast("Coming Soon")
         }
         drawerLayout.closeDrawer(GravityCompat.START)
@@ -80,6 +89,13 @@ class Home : AppCompatActivity(),
             .replace(R.id.homeFrame, fragment)
             .addToBackStack(null)
             .commit()
+    }
+
+    private fun signOut()
+    {
+        app.auth.signOut()
+        startActivity<Login>()
+        finish()
     }
 
 }

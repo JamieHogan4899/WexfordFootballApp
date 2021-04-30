@@ -13,7 +13,7 @@ import ie.wit.helpers.readImage
 import ie.wit.helpers.showEditImagePicker
 import ie.wit.helpers.showImagePicker
 import ie.wit.main.FootballApp
-import ie.wit.models.TeamMemStore
+//import ie.wit.models.TeamMemStore
 import ie.wit.models.TeamModel
 import kotlinx.android.synthetic.main.card_register.view.*
 import kotlinx.android.synthetic.main.fragment_add.*
@@ -100,7 +100,7 @@ class EditDetailsFragment : Fragment() {
 
             //data validation
             if (team.name.isEmpty()||team.location.isEmpty()) {
-                Toast.makeText(getActivity(),"Please check all teams are filled in", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(),"Please check all fields are filled in", Toast.LENGTH_SHORT).show();
             }   else {
                 //storing update value
                 app.teamsStore.update(TeamModel(name = team.name, location = team.location, amount = team.amount, image = team.image))

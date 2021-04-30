@@ -1,3 +1,4 @@
+
 package ie.wit.models
 
 import android.content.Context
@@ -42,7 +43,7 @@ class TeamJSONStore : TeamStore, AnkoLogger {
     }
 
     override fun create(team: TeamModel) {
-        team.id = generateRandomId()
+        //team.id = generateRandomId()
         teams.add(team)
         serialize()
 
@@ -51,7 +52,7 @@ class TeamJSONStore : TeamStore, AnkoLogger {
 
     override fun update(team: TeamModel) {
         val teamList = findAll() as ArrayList<TeamModel>
-        var foundTeam: TeamModel? = teamList.find { p -> p.id == team.id }
+        var foundTeam: TeamModel? = teamList.find { p -> p.uid == team.uid }
         if (foundTeam != null) {
             foundTeam.name = team.name
             foundTeam.location = team.location

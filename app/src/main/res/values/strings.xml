@@ -9,13 +9,17 @@
     <string name="teamId">ID</string>
     <string name="defaultAmount">11</string>
     <string name="defaultMethod">N/A</string>
+    <string name="loading">Please wait while we load in some data</string>
 
 
     //Add A team//
     <string name="team_Name">Team Name</string>
-    <string name="amountOfPlayers">How many players in the squad?</string>
     <string name="homePitchLocation">Where is the home pitch located?</string>
-    <string name="editLogoMessage">You will NOT be able to change this later on</string>
+    <string name="editLogoMessage">You will NOT be able to change the crest later on</string>
+    <string name="QteamName">What is your Team Name</string>
+    <string name="QamountOfPlayers">How many Players in Your Squad</string>
+    <string name="Qlocation">Where is the teams Home Pitch</string>
+    <string name="ChooseCrest">Upload your crest</string>
 
 
 
@@ -67,7 +71,30 @@
     <string name="menu_about">About Us</string>
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
+    <string name="nav_header_subtitle">voteforhomer@android.com</string>
     <string name="select_team_image">Select Team Image</string>
     <string name="change_team_image">Change Team Image</string>
+
+    //login
+    <string name="label_emailpassword">Email/Password Authentication</string>
+    <string name="desc_emailpassword">Use an email and password to authenticate with Firebase.</string>
+    <string name="sign_in">Sign In</string>
+    <string name="create_account">Create Account</string>
+    <string name="send_link">Send Link</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="verify_email">Verify Email</string>
+    <string name="disconnect">Disconnect</string>
+    <string name="signed_in">Signed In</string>
+    <string name="signed_out">Please Sign In</string>
+    <string name="token_null">Token: null</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="desc_firebase_lockup">Firebase logo and name</string>
+    <string name="auth_failed">Authentication failed</string>
+    <string name="firebase_status_fmt">Firebase User: %s</string>
+    <string name="firebase_user_management">Firebase User Management</string>
+    <string name="emailpassword_status_fmt">Email User: %1$s (verified: %2$b)</string>
+    <string name="emailpassword_title_text">Welcome To The Wexford Football League App</string>
+
 
 </resources>
