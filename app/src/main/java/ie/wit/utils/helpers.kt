@@ -1,9 +1,14 @@
 package ie.wit.utils
 
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
+import android.widget.ImageView
 import androidx.appcompat.app.AlertDialog
 import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
 import ie.wit.R
+import ie.wit.main.FootballApp
+import java.io.ByteArrayOutputStream
 
 fun createLoader(activity: FragmentActivity) : AlertDialog {
     val loaderBuilder = AlertDialog.Builder(activity)
@@ -28,17 +33,18 @@ fun hideLoader(loader: AlertDialog) {
         loader.dismiss()
 }
 
-fun serviceUnavailableMessage(activity: FragmentActivity) {
-    Toast.makeText(activity,
-        "Football Service Unavailable. Try again later",
-        Toast.LENGTH_LONG
-    ).show()
+fun uploadImageView(app: FootballApp , imageView: ImageView) {
+    // Get the data from an ImageView as bytes
+    val uid = app.auth.currentUser!!.uid
+    val imageRef = app.storage.child("photos").child("${uid}.jpg")
+    val bitmap = (imageView.drawable as BitmapDrawable).bitmap
+    val baos = ByteArrayOutputStream()
+
+    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+    val data = baos.toByteArray()
+
+    var uploadTask = imageRef.putBytes(data)
 }
 
-fun serviceAvailableMessage(activity: FragmentActivity) {
-    Toast.makeText(activity,
-        "Football Contacted Successfully",
-        Toast.LENGTH_LONG
-    ).show()
-}
+
 

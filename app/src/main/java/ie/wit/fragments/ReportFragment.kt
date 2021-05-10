@@ -25,7 +25,7 @@ import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 
 
-class ReportFragment : Fragment(), AnkoLogger, TeamListener   {
+open class ReportFragment : Fragment(), AnkoLogger, TeamListener   {
 
     lateinit var app: FootballApp
     lateinit var root: View
@@ -112,7 +112,7 @@ class ReportFragment : Fragment(), AnkoLogger, TeamListener   {
                 })
     }
 
-    fun setSwipeRefresh() {
+    open fun setSwipeRefresh() {
         root.swiperefresh.setOnRefreshListener(object : SwipeRefreshLayout.OnRefreshListener {
             override fun onRefresh() {
                 root.swiperefresh.isRefreshing = true
@@ -160,7 +160,8 @@ class ReportFragment : Fragment(), AnkoLogger, TeamListener   {
 
     override fun onResume() {
         super.onResume()
-        getAllTeams(app.auth.currentUser!!.uid)
+        if(this::class == ReportFragment::class)
+            getAllTeams(app.auth.currentUser!!.uid)
     }
 
      override fun onTeamClick(team: TeamModel) {

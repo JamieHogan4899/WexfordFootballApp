@@ -12,6 +12,7 @@ data class TeamModel(var uid: String = "",
                      var location: String = "",
                      var amount: Int= 0,
                      var image: String = "",
+                     var profilepic: String = "",
                      var email: String? = "jamiehogan4848@gmail.com"
 
 ) : Parcelable
@@ -26,6 +27,7 @@ data class TeamModel(var uid: String = "",
             "location" to location,
             "amount" to amount,
             "image" to image,
+            "profilepic" to profilepic,
             "email" to email
         )
     }

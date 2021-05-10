@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Wexford Football League</string>
-    <string name="action_report">Report</string>
+    <string name="action_report">Manage My Teams</string>
     <string name="add_Title">Register Team</string>
     <string name="addLogo">Add Crest</string>
     <string name="addButton">Complete Registration</string>
@@ -24,7 +24,7 @@
 
 
     //List
-    <string name="ListTitle">Registered Teams</string>
+    <string name="ManageTitle">Teams</string>
 
     //About Us
     <string name="ContactDetails">Contact Details</string>
@@ -67,12 +67,12 @@
 
     //Nav Bar
     <string name="menu_addTeam">Register Team</string>
-    <string name="list">View My Teams</string>
-    <string name="menu_edit">Edit Your Details</string>
+    <string name="list">View All Teams Registered</string>
+    <string name="menu_allTeams">View All Teams</string>
     <string name="menu_about">About Us</string>
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
-    <string name="nav_header_subtitle">voteforhomer@android.com</string>
+    <string name="nav_header_subtitle">Wexford Football League</string>
     <string name="select_team_image">Select Team Image</string>
     <string name="change_team_image">Change Team Image</string>
 

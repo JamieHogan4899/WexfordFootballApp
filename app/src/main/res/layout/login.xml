@@ -3,7 +3,7 @@
     android:id="@+id/main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grey_500"
+    android:background="@color/grey_100"
     android:orientation="vertical"
     android:weightSum="4">
 
@@ -11,18 +11,16 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="3"
-        android:background="#CE1CFF"
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
         <ImageView
             android:id="@+id/icon"
             style="@style/ThemeOverlay.FirebaseIcon"
-            android:layout_width="338dp"
+            android:layout_width="286dp"
             android:layout_height="325dp"
             android:contentDescription="@string/desc_firebase_lockup"
             android:src="@mipmap/ic_login_screen_one" />
-
 
         <TextView
             android:id="@+id/titleText"
@@ -36,17 +34,12 @@
         <TextView
             android:id="@+id/status"
             style="@style/ThemeOverlay.MyTextDetail"
-            android:layout_width="190dp"
             android:text="@string/signed_out"
-
-            android:textColor="@color/colorWhite"
-            android:textSize="18sp" />
+            android:textColor="@color/colorWhite" />
 
         <TextView
             android:id="@+id/detail"
             style="@style/ThemeOverlay.MyTextDetail"
-            android:layout_width="303dp"
-            android:textSize="18sp"
             tools:text="Firebase User ID: 123456789abc" />
 
     </LinearLayout>
@@ -95,23 +88,38 @@
 
             <Button
                 android:id="@+id/emailSignInButton"
+                style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/sign_in"
-                android:backgroundTint="#FFE500"
-                android:textColor="#000000"
                 android:theme="@style/ThemeOverlay.MyDarkButton" />
 
             <Button
                 android:id="@+id/emailCreateAccountButton"
+                style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="#FFE500"
-                android:textColor="#000000"
                 android:text="@string/create_account"
                 android:theme="@style/ThemeOverlay.MyDarkButton" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/googleSignInButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/emailPasswordButtons"
+            android:orientation="horizontal"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+
+            <com.google.android.gms.common.SignInButton
+                android:id="@+id/sign_in_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
         </LinearLayout>
 
         <LinearLayout
