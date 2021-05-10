@@ -16,6 +16,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import ie.wit.R
 import ie.wit.adapters.MainAdapter
+import ie.wit.adapters.TeamListener
 import ie.wit.main.FootballApp
 import ie.wit.models.TeamModel
 import ie.wit.utils.*
@@ -162,7 +163,7 @@ class ReportFragment : Fragment(), AnkoLogger, TeamListener   {
         getAllTeams(app.auth.currentUser!!.uid)
     }
 
-    override fun onTeamClick(team: TeamModel) {
+     override fun onTeamClick(team: TeamModel) {
         activity!!.supportFragmentManager.beginTransaction()
                 .replace(R.id.homeFrame, EditDetailsFragment.newInstance(team))
                 .addToBackStack(null)

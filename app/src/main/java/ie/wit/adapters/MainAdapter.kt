@@ -5,11 +5,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ie.wit.R
-import ie.wit.fragments.TeamListener
 import ie.wit.helpers.readImageFromPath
 import ie.wit.models.TeamModel
 import kotlinx.android.synthetic.main.card_register.view.*
 
+interface TeamListener {
+    fun onTeamClick(team: TeamModel)
+}
 
 
 class MainAdapter(private var teams: ArrayList<TeamModel>, private val listener: TeamListener

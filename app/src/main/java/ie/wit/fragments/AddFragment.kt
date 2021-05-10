@@ -34,7 +34,6 @@ class AddFragment : Fragment(),AnkoLogger {
     var teams = TeamModel()
     val IMAGE_REQUEST = 1
     lateinit var loader : AlertDialog
-    lateinit var eventListener : ValueEventListener
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -22,9 +22,6 @@ import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 
 
-interface TeamListener {
-    fun onTeamClick(team: TeamModel)
-}
 
 class EditDetailsFragment : Fragment(), AnkoLogger {
 
@@ -40,7 +37,6 @@ class EditDetailsFragment : Fragment(), AnkoLogger {
         arguments?.let {
             editTeam = it.getParcelable("editteam")
         }
-
     }
 
     //load what fragment XML to load, set values for squad picker, button listeners
@@ -50,6 +46,9 @@ class EditDetailsFragment : Fragment(), AnkoLogger {
     ): View? {
         // Inflate the layout for this fragment
 
+        info(editTeam)
+
+
         root = inflater.inflate(R.layout.fragment_editdetails, container, false)
         activity?.title = getString(R.string.action_edit)
         loader = createLoader(activity!!)
@@ -57,8 +56,9 @@ class EditDetailsFragment : Fragment(), AnkoLogger {
         root.editSquadNumber.minValue = 11
         root.editSquadNumber.maxValue = 28
 
-        root.editTeamName.setText(editTeam!!.name)
 
+        root.editTeamName.setText(editTeam!!.name)
+        root.editHomePitch.setText(editTeam!!.location)
 
         root.updateBtn.setOnClickListener {
             showLoader(loader, "Updating Team on Server...")
@@ -75,13 +75,17 @@ class EditDetailsFragment : Fragment(), AnkoLogger {
         @JvmStatic
         fun newInstance(team: TeamModel) =
                 EditDetailsFragment().apply {
-                    arguments = Bundle().apply { }
+                    arguments = Bundle().apply {
+                        putParcelable("editteam", team)
+                    }
                }
     }
 
 
     fun updateTeamData() {
         editTeam!!.name = root.editTeamName.text.toString()
+        editTeam!!.location = root.editHomePitch.text.toString()
+        editTeam!!.amount = root.editSquadNumber.value
     }
 
 
