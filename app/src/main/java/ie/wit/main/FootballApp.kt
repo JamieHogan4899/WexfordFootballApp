@@ -11,21 +11,15 @@ import ie.wit.models.TeamStore
 
 class FootballApp : Application() {
 
-    lateinit var teamsStore: TeamStore
-    lateinit var theChoosenTeam: TeamModel  //global
-    lateinit var database: DatabaseReference
 
+    lateinit var database: DatabaseReference
+    var teams = ArrayList<TeamModel>()
     // [START declare_auth]
     lateinit var auth: FirebaseAuth
     // [END declare_auth]
 
     override fun onCreate() {
         super.onCreate()
-        //teamsStore = TeamMemStore()
-        theChoosenTeam = TeamModel()
-        //teamsStore = TeamJSONStore(applicationContext)
-
-
         Log.v("App","Jamies App started")
     }
 }

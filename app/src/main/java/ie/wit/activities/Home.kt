@@ -13,7 +13,7 @@ import com.google.android.material.snackbar.Snackbar
 import ie.wit.R
 import ie.wit.fragments.AboutUsFragment
 import ie.wit.fragments.AddFragment
-import ie.wit.fragments.EditFragment
+
 import ie.wit.fragments.ReportFragment
 import ie.wit.main.FootballApp
 import kotlinx.android.synthetic.main.app_bar_home.*
@@ -67,7 +67,6 @@ class Home : AppCompatActivity(),
             R.id.nav_AddTeam -> navigateTo(AddFragment.newInstance())
             R.id.nav_addedTeams-> navigateTo(ReportFragment.newInstance())
             R.id.nav_aboutus-> navigateTo(AboutUsFragment.newInstance())
-            R.id.nav_edit-> navigateTo(EditFragment.newInstance(AddFragment))
             R.id.nav_sign_out -> signOut()
 
             else -> toast("Coming Soon")

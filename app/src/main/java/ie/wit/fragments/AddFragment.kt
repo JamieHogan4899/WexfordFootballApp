@@ -1,15 +1,19 @@
 package ie.wit.fragments
 
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import org.jetbrains.anko.toast
 import androidx.fragment.app.Fragment
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import ie.wit.R
 import ie.wit.helpers.readImage
 import ie.wit.helpers.showImagePicker
@@ -30,6 +34,7 @@ class AddFragment : Fragment(),AnkoLogger {
     var teams = TeamModel()
     val IMAGE_REQUEST = 1
     lateinit var loader : AlertDialog
+    lateinit var eventListener : ValueEventListener
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -136,11 +141,11 @@ class AddFragment : Fragment(),AnkoLogger {
     fun writeNewTeam(team: TeamModel) {
 
         showLoader(loader, "Adding Team to Firebase")
-        info("Firebase DB Reference : $app.database")
+        info("Firebase DB Reference " + app.database)
         val uid = app.auth.currentUser!!.uid
         val key = app.database.child("teams").push().key
         if (key == null) {
-            //info("Firebase Error : Key Empty")
+            info("Firebase Error : Key Empty")
             return
         }
         team.uid = key
@@ -149,9 +154,17 @@ class AddFragment : Fragment(),AnkoLogger {
         val childUpdates = HashMap<String, Any>()
         childUpdates["/teams/$key"] = teamValues
         childUpdates["/user-teams/$uid/$key"] = teamValues
+        Log.d (TAG, childUpdates.toString())
 
-        app.database.updateChildren(childUpdates)
+
+                app.database.updateChildren(childUpdates)
         hideLoader(loader)
+
+        println(childUpdates)
     }
+
+
+
+
 }
 

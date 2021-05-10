@@ -24,7 +24,7 @@ data class TeamModel(var uid: String = "",
             "uid" to uid,
             "name" to name,
             "location" to location,
-            "amout" to amount,
+            "amount" to amount,
             "image" to image,
             "email" to email
         )

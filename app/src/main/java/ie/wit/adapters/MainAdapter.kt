@@ -5,13 +5,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ie.wit.R
+import ie.wit.fragments.TeamListener
 import ie.wit.helpers.readImageFromPath
 import ie.wit.models.TeamModel
 import kotlinx.android.synthetic.main.card_register.view.*
 
 
 
-class MainAdapter(private var teams: List<TeamModel>,
+class MainAdapter(private var teams: ArrayList<TeamModel>, private val listener: TeamListener
                   )
     : RecyclerView.Adapter<MainAdapter.MainHolder>() {
 
@@ -29,7 +30,7 @@ class MainAdapter(private var teams: List<TeamModel>,
     //note no listener so you cant click in the list screen
     override fun onBindViewHolder(holder: MainHolder, position: Int) {
         val team = teams[holder.adapterPosition]
-        holder.bind(team)
+        holder.bind(team, listener)
 
     }
 
@@ -37,16 +38,19 @@ class MainAdapter(private var teams: List<TeamModel>,
 
     //show added teams
     class MainHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(team: TeamModel) {
-
+        fun bind(team: TeamModel, listener: TeamListener) {
+            itemView.tag = team
             itemView.imageIcon.setImageBitmap(readImageFromPath(itemView.context, team.image))
             itemView.listName.text = team.name
             itemView.teamLocation.text = team.location
             itemView.teamAmount.text = team.amount.toString()
+            itemView.setOnClickListener { listener.onTeamClick(team) }
 
 
 
         }
     }
+
+
 
 }

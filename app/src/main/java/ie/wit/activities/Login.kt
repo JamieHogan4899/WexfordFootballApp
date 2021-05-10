@@ -1,5 +1,6 @@
 package ie.wit.activities
 
+import android.nfc.Tag
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
@@ -111,6 +112,7 @@ class Login : AppCompatActivity(), View.OnClickListener {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "signInWithEmail:success")
                     val user = app.auth.currentUser
+                    Log.d (TAG,"User" + user)
                     updateUI(user)
                 } else {
                     // If sign in fails, display a message to the user.
@@ -197,7 +199,7 @@ class Login : AppCompatActivity(), View.OnClickListener {
             signedInButtons.visibility = View.VISIBLE
 
             verifyEmailButton.isEnabled = !user.isEmailVerified
-            app.database = FirebaseDatabase.getInstance().reference
+            app.database = FirebaseDatabase.getInstance("https://assignment-2-fe885-default-rtdb.europe-west1.firebasedatabase.app/").reference
             startActivity<Home>()
         } else {
             status.setText(R.string.signed_out)

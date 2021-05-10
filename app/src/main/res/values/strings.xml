@@ -59,6 +59,7 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
+    <string name="action_edit">Edit A Team</string>
 
     //Title
     <string name="action_add">Wexford Football League </string>
@@ -66,7 +67,7 @@
 
     //Nav Bar
     <string name="menu_addTeam">Register Team</string>
-    <string name="list">View Registered Teams</string>
+    <string name="list">View My Teams</string>
     <string name="menu_edit">Edit Your Details</string>
     <string name="menu_about">About Us</string>
     <string name="menu_share">Share</string>

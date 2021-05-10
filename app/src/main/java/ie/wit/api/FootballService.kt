@@ -10,24 +10,24 @@ import retrofit2.http.*
 import java.util.concurrent.TimeUnit
 
 interface FootballService {
-    @GET("/donations")
+    @GET("/teams")
     fun getall(): Call<List<TeamModel>>
 
-    @GET("/donations/{id}")
+    @GET("/teams/{id}")
     fun get(@Path("id") id: String): Call<TeamModel>
 
-    @DELETE("/donations/{id}")
+    @DELETE("/teams/{id}")
     fun delete(@Path("id") id: String): Call<TeamModel>
 
-    @POST("/donations")
+    @POST("/teams")
     //@Headers("Content-Type: application/json")
     fun post(@Body team: TeamModel
         /*,@Header("Authorization") token : String*/)
             : Call<FootballWrapper>
 
-    @PUT("/donations/{id}")
+    @PUT("/teams/{id}")
     fun put(@Path("id") id: String,
-            @Body donation: TeamModel
+            @Body team: TeamModel
     ): Call<FootballWrapper>
 
     companion object {
