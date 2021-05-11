@@ -55,5 +55,13 @@
             tools:text="@string/teamId" />
 
 
+        <ImageView
+            android:id="@+id/imagefavourite"
+            android:layout_width="63dp"
+            android:layout_height="75dp"
+            android:layout_marginLeft="332dp"
+            android:layout_marginTop="40dp"
+            app:srcCompat="@android:drawable/star_big_off" />
+
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

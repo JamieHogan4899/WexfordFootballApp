@@ -144,7 +144,7 @@ open class ReportFragment : Fragment(), AnkoLogger, TeamListener   {
 
                             teamList.add(team!!)
                             root.recyclerView.adapter =
-                                MainAdapter(teamList, this@ReportFragment)
+                                MainAdapter(teamList, this@ReportFragment, true)
 
                             checkSwipeRefresh()
 

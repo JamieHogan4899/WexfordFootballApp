@@ -34,6 +34,7 @@ class AddFragment : Fragment(),AnkoLogger {
     var teams = TeamModel()
     val IMAGE_REQUEST = 1
     lateinit var loader : AlertDialog
+    var favourite = false
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,6 +59,7 @@ class AddFragment : Fragment(),AnkoLogger {
 
         setAddButtonListener(root)
         setAddImageListen(root)
+        setFavouriteListener(root)
 
 
         return root;
@@ -95,7 +97,7 @@ class AddFragment : Fragment(),AnkoLogger {
 
 
                 //addTeam
-               writeNewTeam(TeamModel(name = teams.name, location = teams.location, amount = teams.amount, image = teams.image,
+               writeNewTeam(TeamModel(name = teams.name, location = teams.location, amount = teams.amount, image = teams.image, isfavourite = favourite,
                     email = app.auth.currentUser?.email))
 
 
@@ -162,7 +164,20 @@ class AddFragment : Fragment(),AnkoLogger {
         println(childUpdates)
     }
 
-
+    fun setFavouriteListener  (layout: View) {
+        layout.imagefavourite.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(view: View?) {
+                if (!favourite) {
+                    layout.imagefavourite.setImageResource(android.R.drawable.star_big_on)
+                    favourite = true
+                }
+                else {
+                    layout.imagefavourite.setImageResource(android.R.drawable.star_big_off)
+                    favourite = false
+                }
+            }
+        })
+    }
 
 
 }

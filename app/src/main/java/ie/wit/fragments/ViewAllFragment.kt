@@ -1,6 +1,8 @@
 package ie.wit.fragments
 
 
+import android.annotation.SuppressLint
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +12,6 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
-
 import ie.wit.R
 import ie.wit.adapters.MainAdapter
 import ie.wit.adapters.TeamListener
@@ -18,8 +19,13 @@ import ie.wit.models.TeamModel
 import ie.wit.utils.createLoader
 import ie.wit.utils.hideLoader
 import ie.wit.utils.showLoader
+import kotlinx.android.synthetic.main.card_register.*
+import kotlinx.android.synthetic.main.card_register.view.*
+import kotlinx.android.synthetic.main.card_register.view.imagefavourite
+import kotlinx.android.synthetic.main.fragment_add.view.*
 import kotlinx.android.synthetic.main.fragment_report.view.*
 import org.jetbrains.anko.info
+
 
 class ViewAllFragment : ReportFragment(),
     TeamListener {
@@ -69,17 +75,15 @@ class ViewAllFragment : ReportFragment(),
                 override fun onCancelled(error: DatabaseError) {
                     info("Firebase Team error : ${error.message}")
                 }
-
                 override fun onDataChange(snapshot: DataSnapshot) {
                     hideLoader(loader)
                     val children = snapshot.children
                     children.forEach {
-                        val team = it.
-                        getValue<TeamModel>(TeamModel::class.java)
+                        val team = it.getValue<TeamModel>(TeamModel::class.java)
 
                         teamsList.add(team!!)
                         root.recyclerView.adapter =
-                            MainAdapter(teamsList, this@ViewAllFragment)
+                            MainAdapter(teamsList, this@ViewAllFragment, true)
                         root.recyclerView.adapter?.notifyDataSetChanged()
                         checkSwipeRefresh()
 
@@ -96,3 +100,4 @@ class ViewAllFragment : ReportFragment(),
 
 
     }
+
