@@ -79,13 +79,13 @@ class EditDetailsFragment : Fragment(), AnkoLogger {
                     }
                }
     }
-    //take in new values
-    fun updateTeamData() {
+
+   fun updateTeamData() {
         editTeam!!.name = root.editTeamName.text.toString()
         editTeam!!.location = root.editHomePitch.text.toString()
         editTeam!!.amount = root.editSquadNumber.value
     }
-
+  
     //get the team we want to update on server
     fun updateUserTeam(userId: String, uid: String?, team: TeamModel) {
         app.database.child("user-teams").child(userId).child(uid!!)
