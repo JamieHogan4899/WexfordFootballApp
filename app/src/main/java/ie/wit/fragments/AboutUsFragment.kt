@@ -11,6 +11,7 @@ import ie.wit.adapters.MainAdapter
 import ie.wit.main.FootballApp
 import ie.wit.models.TeamModel
 
+//no real code needed layout done in XML
 
 class AboutUsFragment : Fragment() {
 

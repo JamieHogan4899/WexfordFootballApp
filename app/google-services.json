@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "279173699384",
+    "firebase_url": "https://assignment-2-fe885-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "assignment-2-fe885",
+    "storage_bucket": "assignment-2-fe885.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:279173699384:android:f781bc70f3e9b0c7bcd3cd",
+        "android_client_info": {
+          "package_name": "ie.wit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "279173699384-11q8paepamc8ll6gqs0rr7qmor1gnh51.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ie.wit",
+            "certificate_hash": "be43884a3ff953206031c2a466bc6b1ada6efcc7"
+          }
+        },
+        {
+          "client_id": "279173699384-pbugm4l0e2669c5un3v7piu7mcgpg77s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0paclyG8J074yX31y5p9H7BQbB3XvgD4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "279173699384-e03kidkphk5l23pga86d54a27jkl2agv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

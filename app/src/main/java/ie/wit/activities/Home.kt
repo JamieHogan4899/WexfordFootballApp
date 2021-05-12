@@ -8,15 +8,24 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import com.firebase.ui.auth.AuthUI
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
+import com.squareup.picasso.Callback
+import com.squareup.picasso.Picasso
 import ie.wit.R
 import ie.wit.fragments.AboutUsFragment
 import ie.wit.fragments.AddFragment
-import ie.wit.fragments.EditFragment
+
 import ie.wit.fragments.ReportFragment
+import ie.wit.fragments.ViewAllFragment
+import ie.wit.main.FootballApp
+import ie.wit.utils.uploadImageView
+import jp.wasabeef.picasso.transformations.CropCircleTransformation
 import kotlinx.android.synthetic.main.app_bar_home.*
 import kotlinx.android.synthetic.main.home.*
+import kotlinx.android.synthetic.main.nav_header_home.view.*
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 
 class Home : AppCompatActivity(),
@@ -24,15 +33,18 @@ class Home : AppCompatActivity(),
 
 
     lateinit var ft: FragmentTransaction
+    lateinit var app: FootballApp
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.home)
+        app = application as FootballApp
         setSupportActionBar(toolbar)
 
         fab.setOnClickListener { view ->
             Snackbar.make(
-                view, "Replace with your own action",
+                view, "",
                 Snackbar.LENGTH_LONG
             ).setAction("Action", null).show()
         }
@@ -47,6 +59,30 @@ class Home : AppCompatActivity(),
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
+        if(app.currentUser.email != null)
+            navView.getHeaderView(0).nav_header_email.text = app.currentUser.email
+        else
+            navView.getHeaderView(0).nav_header_email.text = ""
+
+        if (app.currentUser?.photoUrl != null) {
+            navView.getHeaderView(0).nav_header_email.text = app.currentUser?.displayName
+
+            Picasso.get().load(app.currentUser?.photoUrl)
+                .resize(180, 180)
+                .transform(CropCircleTransformation())
+                .into(navView.getHeaderView(0).imageView, object : Callback {
+                    override fun onSuccess() {
+                        // Drawable is ready
+                        uploadImageView(app, navView.getHeaderView(0).imageView)
+                    }
+
+                    override fun onError(e: Exception) {}
+                }
+                )
+        }
+
+
+
         ft = supportFragmentManager.beginTransaction()
 
         val fragment = AddFragment.newInstance()
@@ -58,9 +94,11 @@ class Home : AppCompatActivity(),
 
         when (item.itemId) {
             R.id.nav_AddTeam -> navigateTo(AddFragment.newInstance())
-            R.id.nav_addedTeams-> navigateTo(ReportFragment.newInstance())
+            R.id.nav_control-> navigateTo(ReportFragment.newInstance())
             R.id.nav_aboutus-> navigateTo(AboutUsFragment.newInstance())
-            R.id.nav_edit-> navigateTo(EditFragment.newInstance(AddFragment))
+            R.id.nav_list -> navigateTo(ViewAllFragment.newInstance())
+            R.id.nav_sign_out -> signOut()
+
             else -> toast("Coming Soon")
         }
         drawerLayout.closeDrawer(GravityCompat.START)
@@ -82,4 +120,11 @@ class Home : AppCompatActivity(),
             .commit()
     }
 
+    private fun signOut() {
+        AuthUI.getInstance()
+            .signOut(this)
+            .addOnCompleteListener { startActivity<Login>() }
+        finish()
+    }
 }
+
