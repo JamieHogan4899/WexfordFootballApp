@@ -5,4 +5,123 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
+    <ImageView android:id="@+id/AboutLogo"
+        android:layout_width="400dp"
+        android:layout_height="225dp"
+        android:src="@mipmap/ic_nav_screen_five"
+        android:background="#CE1CFF"
+        tools:layout_editor_absoluteX="-1dp"
+        tools:layout_editor_absoluteY="4dp"
+        tools:ignore="MissingConstraints" />
+
+
+    <TextView
+        android:id="@+id/AboutTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="104dp"
+        android:layout_marginBottom="392dp"
+        android:text=".What does our app do?"
+        android:textAppearance="@android:style/TextAppearance.Material.Medium"
+        android:textColor="#F3DB00"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <TextView
+        android:id="@+id/crud"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="84dp"
+        android:layout_marginBottom="364dp"
+        android:text="Create, List, Delete, Edit a team"
+        android:textAppearance="@android:style/TextAppearance.Material.Medium"
+        android:textColor="#000000"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/add"
+        android:layout_width="317dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="44dp"
+        android:layout_marginBottom="312dp"
+        android:text=".When adding add a name, location, select number, add crest"
+        android:textAppearance="@android:style/TextAppearance.Material.Medium"
+        android:textColor="#000000"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <TextView
+        android:id="@+id/MAF"
+        android:layout_width="317dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="44dp"
+        android:layout_marginBottom="260dp"
+        android:text=".Mark as favourite, and display favourites"
+        android:textAppearance="@android:style/TextAppearance.Material.Medium"
+        android:textColor="#000000"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/SignIn"
+        android:layout_width="317dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="44dp"
+        android:layout_marginBottom="184dp"
+        android:text=".Sign In using Google, and Email, phone number will not work due to app permission error but attempted"
+        android:textAppearance="@android:style/TextAppearance.Material.Medium"
+        android:textColor="#000000"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <TextView
+        android:id="@+id/FB"
+        android:layout_width="317dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="44dp"
+        android:layout_marginBottom="132dp"
+        android:text=".Utilze Firebase Database and Storage"
+        android:textAppearance="@android:style/TextAppearance.Material.Medium"
+        android:textColor="#000000"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/UX"
+        android:layout_width="317dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="44dp"
+        android:layout_marginBottom="52dp"
+        android:text=".Use of Nav Drawer, And swipe to edit and delete"
+        android:textAppearance="@android:style/TextAppearance.Material.Medium"
+        android:textColor="#000000"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/Git"
+        android:layout_width="317dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="44dp"
+        android:layout_marginBottom="104dp"
+        android:text=".Used of Branches on GitHub"
+        android:textAppearance="@android:style/TextAppearance.Material.Medium"
+        android:textColor="#000000"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

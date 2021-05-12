@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import com.firebase.ui.auth.AuthUI
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import com.squareup.picasso.Callback
@@ -34,6 +35,7 @@ class Home : AppCompatActivity(),
     lateinit var ft: FragmentTransaction
     lateinit var app: FootballApp
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.home)
@@ -42,7 +44,7 @@ class Home : AppCompatActivity(),
 
         fab.setOnClickListener { view ->
             Snackbar.make(
-                view, "Replace with your own action",
+                view, "",
                 Snackbar.LENGTH_LONG
             ).setAction("Action", null).show()
         }
@@ -57,19 +59,30 @@ class Home : AppCompatActivity(),
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
-        if (app.auth.currentUser?.photoUrl != null) {
-            navView.getHeaderView(0).nav_header_email.text = app.auth.currentUser?.displayName
-            Picasso.get().load(app.auth.currentUser?.photoUrl)
+        if(app.currentUser.email != null)
+            navView.getHeaderView(0).nav_header_email.text = app.currentUser.email
+        else
+            navView.getHeaderView(0).nav_header_email.text = ""
+
+        if (app.currentUser?.photoUrl != null) {
+            navView.getHeaderView(0).nav_header_email.text = app.currentUser?.displayName
+
+            Picasso.get().load(app.currentUser?.photoUrl)
                 .resize(180, 180)
                 .transform(CropCircleTransformation())
                 .into(navView.getHeaderView(0).imageView, object : Callback {
                     override fun onSuccess() {
                         // Drawable is ready
-                        uploadImageView(app,navView.getHeaderView(0).imageView)
+                        uploadImageView(app, navView.getHeaderView(0).imageView)
                     }
+
                     override fun onError(e: Exception) {}
-                })
+                }
+                )
         }
+
+
+
         ft = supportFragmentManager.beginTransaction()
 
         val fragment = AddFragment.newInstance()
@@ -108,11 +121,10 @@ class Home : AppCompatActivity(),
     }
 
     private fun signOut() {
-        app.googleSignInClient.signOut().addOnCompleteListener(this) {
-            app.auth.signOut()
-            startActivity<Login>()
-            finish()
-        }
+        AuthUI.getInstance()
+            .signOut(this)
+            .addOnCompleteListener { startActivity<Login>() }
+        finish()
     }
 }
 

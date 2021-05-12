@@ -11,8 +11,10 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import ie.wit.R
 import ie.wit.adapters.MainAdapter
@@ -29,14 +31,11 @@ open class ReportFragment : Fragment(), AnkoLogger, TeamListener   {
 
     lateinit var app: FootballApp
     lateinit var root: View
-    lateinit var loader : AlertDialog
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         app = activity?.application as FootballApp
-
-
-
     }
     //list teams, not how you cant click into it
     override fun onCreateView(
@@ -48,14 +47,28 @@ open class ReportFragment : Fragment(), AnkoLogger, TeamListener   {
         activity?.title = getString(R.string.action_report)
         root.recyclerView.setLayoutManager(LinearLayoutManager(activity!!))
 
-        setSwipeRefresh()
+        //get teams from database
+        var query = FirebaseDatabase.getInstance("https://assignment-2-fe885-default-rtdb.europe-west1.firebasedatabase.app/")
+            .reference
+            .child("user-teams").child(app.currentUser.uid)
+         println(query)
+
+        var options = FirebaseRecyclerOptions.Builder<TeamModel>()
+            .setQuery(query, TeamModel::class.java)
+            .setLifecycleOwner(this)
+            .build()
+
+        root.recyclerView.adapter = MainAdapter(options, this)
 
 
+
+
+        //handle what happens when swiping to delete and edit
         val swipeDeleteHandler = object : SwipeToDeleteCallback(activity!!) {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val adapter = root.recyclerView.adapter as MainAdapter
                 deleteTeam((viewHolder.itemView.tag as TeamModel).uid)
-                deleteUserTeam(app.auth.currentUser!!.uid,
+                deleteUserTeam(app.currentUser!!.uid,
                     (viewHolder.itemView.tag as TeamModel).uid)
 
             }
@@ -71,6 +84,7 @@ open class ReportFragment : Fragment(), AnkoLogger, TeamListener   {
         val itemTouchEditHelper = ItemTouchHelper(swipeEditHandler)
         itemTouchEditHelper.attachToRecyclerView(root.recyclerView)
 
+
         return root
     }
     companion object {
@@ -81,9 +95,7 @@ open class ReportFragment : Fragment(), AnkoLogger, TeamListener   {
             }
     }
 
-
-
-
+    //deleing team for the user
     fun deleteUserTeam(userId: String, uid: String?) {
         app.database.child("user-teams").child(userId).child(uid!!)
             .addListenerForSingleValueEvent(
@@ -91,13 +103,13 @@ open class ReportFragment : Fragment(), AnkoLogger, TeamListener   {
                     override fun onDataChange(snapshot: DataSnapshot) {
                         snapshot.ref.removeValue()
                     }
-
                     override fun onCancelled(error: DatabaseError) {
                         info("Firebase Team error : ${error.message}")
                     }
                 })
     }
 
+    //deleting by id on database
     fun deleteTeam(uid: String?) {
         app.database.child("teams").child(uid!!)
             .addListenerForSingleValueEvent(
@@ -107,68 +119,17 @@ open class ReportFragment : Fragment(), AnkoLogger, TeamListener   {
                     }
 
                     override fun onCancelled(error: DatabaseError) {
-                        info("Firebase Teams error : ${error.message}")
-                    }
-                })
-    }
-
-    open fun setSwipeRefresh() {
-        root.swiperefresh.setOnRefreshListener(object : SwipeRefreshLayout.OnRefreshListener {
-            override fun onRefresh() {
-                root.swiperefresh.isRefreshing = true
-                getAllTeams(app.auth.currentUser!!.uid)
-            }
-        })
-    }
-
-    fun checkSwipeRefresh() {
-        if (root.swiperefresh.isRefreshing) root.swiperefresh.isRefreshing = false
-    }
-
-    fun getAllTeams(userId: String?) {
-        loader = createLoader(activity!!)
-        showLoader(loader, "Downloading Teams from Firebase")
-        var teamList = ArrayList<TeamModel>()
-        app.database.child("user-teams").child(userId!!)
-                .addValueEventListener(object : ValueEventListener {
-                    override fun onCancelled(error: DatabaseError) {
                         info("Firebase Team error : ${error.message}")
                     }
-
-                    override fun onDataChange(snapshot: DataSnapshot) {
-                        hideLoader(loader)
-                        val children = snapshot.children
-                        children.forEach {
-                            val team = it.
-                            getValue<TeamModel>(TeamModel::class.java)
-
-                            teamList.add(team!!)
-                            root.recyclerView.adapter =
-                                MainAdapter(teamList, this@ReportFragment, true)
-
-                            checkSwipeRefresh()
-
-
-                            app.database.child("user-teams").child(userId)
-                                .removeEventListener(this)
-                        }
-                    }
                 })
     }
 
-
-
-    override fun onResume() {
-        super.onResume()
-        if(this::class == ReportFragment::class)
-            getAllTeams(app.auth.currentUser!!.uid)
-    }
-
-     override fun onTeamClick(team: TeamModel) {
+    //handle what happens when clicking on team
+    override fun onTeamClick(team: TeamModel) {
         activity!!.supportFragmentManager.beginTransaction()
-                .replace(R.id.homeFrame, EditDetailsFragment.newInstance(team))
-                .addToBackStack(null)
-                .commit()
+            .replace(R.id.homeFrame, EditDetailsFragment.newInstance(team))
+            .addToBackStack(null)
+            .commit()
     }
 
 

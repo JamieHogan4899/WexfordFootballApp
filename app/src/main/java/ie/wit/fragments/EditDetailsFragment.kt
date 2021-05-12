@@ -45,14 +45,13 @@ class EditDetailsFragment : Fragment(), AnkoLogger {
             savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-
+        //testing
         info(editTeam)
-
 
         root = inflater.inflate(R.layout.fragment_editdetails, container, false)
         activity?.title = getString(R.string.action_edit)
         loader = createLoader(activity!!)
-
+        //set squad picker values
         root.editSquadNumber.minValue = 11
         root.editSquadNumber.maxValue = 28
 
@@ -61,10 +60,10 @@ class EditDetailsFragment : Fragment(), AnkoLogger {
         root.editHomePitch.setText(editTeam!!.location)
 
         root.updateBtn.setOnClickListener {
-            showLoader(loader, "Updating Team on Server...")
+            showLoader(loader, "Updating Team on Firebase server...")
             updateTeamData()
             updateTeam(editTeam!!.uid, editTeam!!)
-            updateUserTeam(app.auth.currentUser!!.uid,
+            updateUserTeam(app.currentUser!!.uid,
                     editTeam!!.uid, editTeam!!)
         }
 
@@ -80,15 +79,14 @@ class EditDetailsFragment : Fragment(), AnkoLogger {
                     }
                }
     }
-
-
+    //take in new values
     fun updateTeamData() {
         editTeam!!.name = root.editTeamName.text.toString()
         editTeam!!.location = root.editHomePitch.text.toString()
         editTeam!!.amount = root.editSquadNumber.value
     }
 
-
+    //get the team we want to update on server
     fun updateUserTeam(userId: String, uid: String?, team: TeamModel) {
         app.database.child("user-teams").child(userId).child(uid!!)
                 .addListenerForSingleValueEvent(
@@ -107,7 +105,7 @@ class EditDetailsFragment : Fragment(), AnkoLogger {
                             }
                         })
     }
-
+    //update not delete
     fun updateTeam(uid: String?, team: TeamModel) {
         app.database.child("teams").child(uid!!)
                 .addListenerForSingleValueEvent(

@@ -6,7 +6,7 @@
     <string name="addButton">Complete Registration</string>
     <string name="TeamName">Name</string>
     <string name="TeamLocation">Location</string>
-    <string name="teamId">ID</string>
+    <string name="teamPlayers">amountOfPlayer</string>
     <string name="defaultAmount">11</string>
     <string name="defaultMethod">N/A</string>
     <string name="loading">Please wait while we load in some data</string>
@@ -68,7 +68,7 @@
 
     //Nav Bar
     <string name="menu_addTeam">Register Team</string>
-    <string name="list">View All Teams Registered</string>
+    <string name="list">Manage My Teams</string>
     <string name="menu_allTeams">View All Teams</string>
     <string name="menu_about">About Us</string>
     <string name="menu_share">Share</string>
@@ -98,5 +98,9 @@
     <string name="emailpassword_status_fmt">Email User: %1$s (verified: %2$b)</string>
     <string name="emailpassword_title_text">Welcome To The Wexford Football League App</string>
 
+
+    <string name="sign_in_google">Sign In with Google</string>
+    <string name="sign_in_email">Sign In with Email</string>
+    <string name="sign_in_phone">Sign In with Phone</string>
 
 </resources>

@@ -35,7 +35,7 @@ fun hideLoader(loader: AlertDialog) {
 
 fun uploadImageView(app: FootballApp , imageView: ImageView) {
     // Get the data from an ImageView as bytes
-    val uid = app.auth.currentUser!!.uid
+    val uid = app.currentUser!!.uid
     val imageRef = app.storage.child("photos").child("${uid}.jpg")
     val bitmap = (imageView.drawable as BitmapDrawable).bitmap
     val baos = ByteArrayOutputStream()

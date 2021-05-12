@@ -53,10 +53,10 @@ class AddFragment : Fragment(),AnkoLogger {
         val root = inflater.inflate(R.layout.fragment_add, container, false)
         loader = createLoader(activity!!)
         activity?.title = getString(R.string.action_add)
-
+        //sqaud picker values
         root.squadPicker.minValue = 11
         root.squadPicker.maxValue = 28
-
+        //button listeners
         setAddButtonListener(root)
         setAddImageListen(root)
         setFavouriteListener(root)
@@ -91,21 +91,12 @@ class AddFragment : Fragment(),AnkoLogger {
                 //toast("please add a Team Name")
             } else {
 
-                //creates and adds it into the array
-                //app.teamsStore.create(TeamModel(name = teams.name, location = teams.location, amount = teams.amount, image =
-
-
-
-                //addTeam
+                //addTeam adding email and current user
                writeNewTeam(TeamModel(name = teams.name, location = teams.location, amount = teams.amount, image = teams.image, isfavourite = favourite,
-                    email = app.auth.currentUser?.email))
+                    email = app.currentUser?.email))
 
-
-
-                //test
-                println(teams.uid)
-                println(teams.name)
-                println(teams.amount)
+                //testing
+                println(teams)
             }
 
         }
@@ -137,13 +128,11 @@ class AddFragment : Fragment(),AnkoLogger {
     }
 
 
-
-
+    //putting team onto firebase using =app.database as the database
     fun writeNewTeam(team: TeamModel) {
-
         showLoader(loader, "Adding Team to Firebase")
         info("Firebase DB Reference " + app.database)
-        val uid = app.auth.currentUser!!.uid
+        val uid = app.currentUser!!.uid
         val key = app.database.child("teams").push().key
         if (key == null) {
             info("Firebase Error : Key Empty")
